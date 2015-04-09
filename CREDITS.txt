@@ -1,0 +1,23 @@
+Original source was produced during preparation for 2nd Baltic Amadeus Programming Competition
+during time window of October 2014 and March 2015.
+(C) Baltic Amadeus, 2014-2015
+
+The following people contributed the original creative work:
+
+Antanas Kompanas (Web Services and game logic)
+Tomaš Maconko (Admin and Debug clients, installers)
+Titas Lapinskas (Java sample player, debugging and competition maps)
+Kristijonas Telksnys (icon graphics for UI clients)
+
+The following third party libraries were used in the main solution:
+
+Microsoft CommonServiceLocator
+Microsoft Enterprise Library (Logging Application Block)
+Xceed Extended WPF Toolkit
+Microsoft Prism framework
+Microsoft Unity
+
+The following third party libraries were used in the sample client:
+
+Apache HttpComponents (HttpClient)
+JSON.simple
