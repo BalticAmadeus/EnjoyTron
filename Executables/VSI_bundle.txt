@@ -1,0 +1,1 @@
+This is Installers add-on for Visual Studio 2013 that is necessary to build Setup files (and optional otherwise).
