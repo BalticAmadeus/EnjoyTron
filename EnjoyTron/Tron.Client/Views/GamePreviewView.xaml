@@ -1,0 +1,270 @@
+﻿<UserControl x:Class="Tron.AdminClient.Views.GamePreviewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Tron.AdminClient.Converters"
+             xmlns:viewModels="clr-namespace:Tron.AdminClient.ViewModels"
+             xmlns:controls="clr-namespace:Tron.AdminClient.Controls"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1280"
+             Loaded="GamePreviewViewLoaded">
+    <UserControl.Resources>
+        <converters:CellStateConverter x:Key="MapStateConverter" />
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="ResumeButton" Grid.Column="0" Command="{Binding ResumeGameCommand.Command}" IsEnabled="{Binding IsResumeEnabled}" Margin="0,0,10,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Resume Game" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" />
+                    <controls:ProgressRing Grid.Column="1" IsActive="{Binding ResumeGameCommand.IsExecuting}" IsLarge="True" />
+                </Grid>
+            </Button>
+            <Button x:Name="PauseButton" Grid.Column="1" Command="{Binding PauseGameCommand.Command}" IsEnabled="{Binding IsPauseEnabled}" Margin="0,0,10,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Pause Game" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" />
+                    <controls:ProgressRing Grid.Column="1" IsActive="{Binding PauseGameCommand.IsExecuting}" IsLarge="True" />
+                </Grid>
+            </Button>
+            <StackPanel Grid.Column="3" Orientation="Horizontal">
+                <Label Target="{Binding ElementName=IsAutoRefreshEnabled}" Content="_Auto-Refresh:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <CheckBox x:Name="IsAutoRefreshEnabled" IsChecked="{Binding AutoRefreshOperation.IsAutoRefreshEnabled, Mode=TwoWay, FallbackValue=True}" VerticalAlignment="Center" Margin="0,0,10,0" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="400" />
+            </Grid.ColumnDefinitions>
+            
+            <Border BorderThickness="1" BorderBrush="LightGray" Background="Transparent">
+                <xctk:Zoombox x:Name="Zoombox" >
+                    <ListBox ScrollViewer.CanContentScroll="False" 
+                             ItemsSource="{Binding CellCollection}" 
+                             Background="Transparent"
+                             IsHitTestVisible="False"
+                             Width="{Binding CanvasWidth}" 
+                             Height="{Binding CanvasHeight}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas VerticalAlignment="Stretch" 
+                                        HorizontalAlignment="Stretch" 
+                                        IsItemsHost="True"  />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <Setter Property="Canvas.Left" Value="{Binding Path=Left}" />
+                                <Setter Property="Canvas.Top" Value="{Binding Path=Top}" />
+                                <Setter Property="Padding" Value="0" />
+                                <Setter Property="BorderThickness" Value="0" />
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                                <Setter Property="Margin" Value="0" />
+                                <Setter Property="MinHeight" Value="0" />
+                                <Setter Property="Border.CornerRadius" Value="0" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="{x:Type viewModels:CellViewModel}">
+                                <Border Width="{Binding CellSize}" 
+                                        Height="{Binding CellSize}" 
+                                        Background="{Binding State, Converter={StaticResource MapStateConverter}}"
+                                        BorderThickness="0"
+                                        Margin="0"
+                                        Padding="0"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        
+                        <xctk:MagnifierManager.Magnifier>
+                            <xctk:Magnifier BorderBrush="#888888"
+                                  BorderThickness="1"
+                                  Radius="140" 
+                                  ZoomFactor=".25" />
+                        </xctk:MagnifierManager.Magnifier>
+                    </ListBox>
+
+                    <xctk:Zoombox.ViewStack>
+                        <xctk:ZoomboxView>Fit</xctk:ZoomboxView>
+                    </xctk:Zoombox.ViewStack>
+                </xctk:Zoombox>
+            </Border>
+            
+            <Grid Grid.Column="2" Margin="20,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="0,0,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Target="{Binding ElementName=GameLabel}" Content="_Title:" Margin="0,0,0,5" HorizontalAlignment="Right" />
+                    <TextBox x:Name="GameLabel" Grid.Row="0" Grid.Column="1" Text="{Binding Game.Label, FallbackValue=Title}" IsReadOnly="True" IsReadOnlyCaretVisible="False" Margin="0,0,0,5" />
+                    <Label Grid.Row="1" Grid.Column="0" Target="{Binding ElementName=TurnNumber}" Content="_Turn:" Margin="0,0,0,5" HorizontalAlignment="Right" />
+                    <TextBox x:Name="TurnNumber" Grid.Row="1" Grid.Column="1" Text="{Binding TurnNumber, FallbackValue=0}" IsReadOnly="True" IsReadOnlyCaretVisible="False" Margin="0,0,0,5" />
+                    <Label Grid.Row="2" Grid.Column="0" Target="{Binding ElementName=GamePlayers}" Content="_Players:" Margin="0,0,0,5" HorizontalAlignment="Right" />
+                    <TextBox x:Name="GamePlayers" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Game.PlayerCollection.Count, Mode=OneWay, FallbackValue=0}" Margin="0,0,0,5"/>
+
+                    <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition Width="30" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" x:Name="Column4" />
+                            <Grid Grid.Column="1" x:Name="Column5" />
+                            <Grid Grid.Column="2" x:Name="Column6" />
+                        </Grid>
+
+                        <ListView ItemsSource="{Binding PlayerCollection}" SelectedItem="{Binding SelectedPlayer}">
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="False">
+                                    <GridViewColumn Width="{Binding ActualWidth, ElementName=Column4}">
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="Player Username" Margin="5,0,5,0"
+                                                       Style="{StaticResource NormalText}" Foreground="White" />
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Player.Name}" Margin="5,0,5,0"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="{Binding ActualWidth, ElementName=Column5}">
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="Color" Margin="5,0,5,0"
+                                                       Style="{StaticResource NormalText}" Foreground="White" />
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border Background="{Binding Path=ColorId, Converter={StaticResource MapStateConverter}}" Width="10" Height="10" Margin="5,3,5,3" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Width="{Binding ActualWidth, ElementName=Column6}">
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="Condition" Margin="5,0,5,0"
+                                                       Style="{StaticResource NormalText}" Foreground="White" />
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Condition}" Margin="5,0,5,0"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem" BasedOn="{StaticResource {x:Type ListViewItem}}">
+                                    <EventSetter Event="MouseDoubleClick" Handler="OnPlayerDoubleClick" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+                    </Grid>
+
+                    <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding DropPlayerCommand.Command}" Margin="0,0,0,5"  >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="Drop Selected Player" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" />
+                            <controls:ProgressRing Grid.Column="1" IsActive="{Binding DropPlayerCommand.IsExecuting}" IsLarge="True" />
+                        </Grid>
+                    </Button>
+                    <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding ShowInfoCommand.Command}" Margin="0,0,0,5"  >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="Show Info" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" />
+                            <controls:ProgressRing Grid.Column="1" IsActive="{Binding ShowInfoCommand.IsExecuting}" IsLarge="True" />
+                        </Grid>
+                    </Button>
+                    
+                    <Label Grid.Row="6" Grid.Column="0" Content="_Map Resets:" Target="{Binding ElementName=MapResetCount}" HorizontalAlignment="Right" Margin="0,0,0,5"/>
+                    <TextBox x:Name="MapResetCount" Grid.Row="6" Grid.Column="1" Text="{Binding MapResetCount, FallbackValue=0}" IsReadOnly="True" IsReadOnlyCaretVisible="False" Margin="0,0,0,5" />
+                    <Label Grid.Row="7" Grid.Column="0" Content="_Turn Queue Size:" Target="{Binding ElementName=TurnQueueSize}" HorizontalAlignment="Right" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TurnQueueSize" Grid.Row="7" Grid.Column="1" Text="{Binding TurnQueueSize, FallbackValue=0}" IsReadOnly="True" IsReadOnlyCaretVisible="False" Margin="0,0,0,5" />
+                    <Label Grid.Row="8" Grid.Column="0" Content="_Request Count:" Target="{Binding ElementName=RequestCount}" HorizontalAlignment="Right" Margin="0,0,0,5"/>
+                    <TextBox Grid.Row="8" Grid.Column="1" x:Name="RequestCount" Text="{Binding RequestCount, FallbackValue=0}" IsReadOnly="True" IsReadOnlyCaretVisible="False" Margin="0,0,0,5" />
+                    <Label Grid.Row="9" Grid.Column="0" Content="_LastCallTime:" Target="{Binding ElementName=LastCallTime}" HorizontalAlignment="Right" Margin="0,0,0,5"/>
+                    <TextBox Grid.Row="9" Grid.Column="1" x:Name="LastCallTime" Text="{Binding LastCallTime, FallbackValue=0}" IsReadOnly="True" IsReadOnlyCaretVisible="False" Margin="0,0,0,5" />
+                </Grid>
+            </Grid>
+        </Grid>
+        
+        <Grid Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Command="{Binding CloseCommand.Command}" Margin="0,0,10,0" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Close" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0" />
+                    <controls:ProgressRing Grid.Column="1" IsActive="{Binding CloseCommand.IsExecuting}" IsLarge="True" />
+                </Grid>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

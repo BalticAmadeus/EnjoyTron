@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ClientService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:60044/ClientService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:60044/ClientService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:60044/ClientService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Tron.WebService.TransportClasses" />
+      <xsd:import schemaLocation="http://localhost:60044/ClientService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IClientService_InitLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:InitLogin" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_InitLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_CompleteLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:CompleteLogin" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_CompleteLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CompleteLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_CreatePlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePlayer" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_CreatePlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_WaitGameStart_InputMessage">
+    <wsdl:part name="parameters" element="tns:WaitGameStart" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_WaitGameStart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WaitGameStartResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_GetPlayerView_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerView" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_GetPlayerView_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_PerformMove_InputMessage">
+    <wsdl:part name="parameters" element="tns:PerformMove" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_PerformMove_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PerformMoveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_WaitNextTurn_InputMessage">
+    <wsdl:part name="parameters" element="tns:WaitNextTurn" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_WaitNextTurn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WaitNextTurnResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_GetTurnResult_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTurnResult" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_GetTurnResult_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTurnResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_LeaveGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeaveGame" />
+  </wsdl:message>
+  <wsdl:message name="IClientService_LeaveGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeaveGameResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IClientService">
+    <wsdl:operation name="InitLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClientService/InitLogin" message="tns:IClientService_InitLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClientService/InitLoginResponse" message="tns:IClientService_InitLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CompleteLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClientService/CompleteLogin" message="tns:IClientService_CompleteLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClientService/CompleteLoginResponse" message="tns:IClientService_CompleteLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClientService/CreatePlayer" message="tns:IClientService_CreatePlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClientService/CreatePlayerResponse" message="tns:IClientService_CreatePlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WaitGameStart">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClientService/WaitGameStart" message="tns:IClientService_WaitGameStart_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClientService/WaitGameStartResponse" message="tns:IClientService_WaitGameStart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerView">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClientService/GetPlayerView" message="tns:IClientService_GetPlayerView_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClientService/GetPlayerViewResponse" message="tns:IClientService_GetPlayerView_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PerformMove">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClientService/PerformMove" message="tns:IClientService_PerformMove_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClientService/PerformMoveResponse" message="tns:IClientService_PerformMove_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WaitNextTurn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClientService/WaitNextTurn" message="tns:IClientService_WaitNextTurn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClientService/WaitNextTurnResponse" message="tns:IClientService_WaitNextTurn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTurnResult">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClientService/GetTurnResult" message="tns:IClientService_GetTurnResult_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClientService/GetTurnResultResponse" message="tns:IClientService_GetTurnResult_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeaveGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClientService/LeaveGame" message="tns:IClientService_LeaveGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClientService/LeaveGameResponse" message="tns:IClientService_LeaveGame_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IClientService" type="tns:IClientService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InitLogin">
+      <soap:operation soapAction="http://tempuri.org/IClientService/InitLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompleteLogin">
+      <soap:operation soapAction="http://tempuri.org/IClientService/CompleteLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePlayer">
+      <soap:operation soapAction="http://tempuri.org/IClientService/CreatePlayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WaitGameStart">
+      <soap:operation soapAction="http://tempuri.org/IClientService/WaitGameStart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayerView">
+      <soap:operation soapAction="http://tempuri.org/IClientService/GetPlayerView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformMove">
+      <soap:operation soapAction="http://tempuri.org/IClientService/PerformMove" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WaitNextTurn">
+      <soap:operation soapAction="http://tempuri.org/IClientService/WaitNextTurn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTurnResult">
+      <soap:operation soapAction="http://tempuri.org/IClientService/GetTurnResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LeaveGame">
+      <soap:operation soapAction="http://tempuri.org/IClientService/LeaveGame" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ClientService">
+    <wsdl:port name="BasicHttpBinding_IClientService" binding="tns:BasicHttpBinding_IClientService">
+      <soap:address location="http://localhost:60044/ClientService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

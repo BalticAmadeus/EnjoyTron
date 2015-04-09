@@ -1,0 +1,95 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLogic", "GameLogic\GameLogic.csproj", "{6D4EA7B4-E783-4AFE-AF1C-6047C5A99177}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tron.AdminClient", "Tron.Client\Tron.AdminClient.csproj", "{E6B3AA11-1ACF-4958-8E79-926CBD058113}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B150ED29-96C3-4DDA-8AB1-650663287980} = {B150ED29-96C3-4DDA-8AB1-650663287980}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tron.WebService", "Tron.WebService\Tron.WebService.csproj", "{B150ED29-96C3-4DDA-8AB1-650663287980}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tron.DebugClient", "Tron.DebugClient\Tron.DebugClient.csproj", "{E3A9C4CF-73AC-4E81-9711-32ABB145C3D3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B150ED29-96C3-4DDA-8AB1-650663287980} = {B150ED29-96C3-4DDA-8AB1-650663287980}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tron.DebugClient.Demo", "Tron.DebugClient.Demo\Tron.DebugClient.Demo.csproj", "{2C8D0E2D-AF91-4C51-9F6E-5B84D075FA20}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B150ED29-96C3-4DDA-8AB1-650663287980} = {B150ED29-96C3-4DDA-8AB1-650663287980}
+		{E42CD5EE-98F4-49BA-9A49-F0F85C9676AD} = {E42CD5EE-98F4-49BA-9A49-F0F85C9676AD}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tron.WebService.Demo", "Tron.WebService.Demo\Tron.WebService.Demo.csproj", "{E42CD5EE-98F4-49BA-9A49-F0F85C9676AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{699EB881-40A6-4CA9-815C-319B8D0594D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{D821F630-C8C1-4751-A156-1A1B3FD18EA3}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Tron.AdminClient.Setup", "Tron.AdminClient.Setup\Tron.AdminClient.Setup.vdproj", "{85F25B08-68BB-43BC-A009-46251298D5FC}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Tron.DebugClient.Demo.Setup", "Tron.DebugClient.Demo.Setup\Tron.DebugClient.Demo.Setup.vdproj", "{A448E225-DA7E-4BC6-8FB8-204FC18D951B}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Tron.DebugClient.Setup", "Tron.DebugClient.Setup\Tron.DebugClient.Setup.vdproj", "{8C02F3B6-1EBD-419E-9B50-C066C6D8C441}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D4EA7B4-E783-4AFE-AF1C-6047C5A99177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D4EA7B4-E783-4AFE-AF1C-6047C5A99177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D4EA7B4-E783-4AFE-AF1C-6047C5A99177}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6D4EA7B4-E783-4AFE-AF1C-6047C5A99177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D4EA7B4-E783-4AFE-AF1C-6047C5A99177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6B3AA11-1ACF-4958-8E79-926CBD058113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6B3AA11-1ACF-4958-8E79-926CBD058113}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6B3AA11-1ACF-4958-8E79-926CBD058113}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6B3AA11-1ACF-4958-8E79-926CBD058113}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B150ED29-96C3-4DDA-8AB1-650663287980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B150ED29-96C3-4DDA-8AB1-650663287980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B150ED29-96C3-4DDA-8AB1-650663287980}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B150ED29-96C3-4DDA-8AB1-650663287980}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3A9C4CF-73AC-4E81-9711-32ABB145C3D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3A9C4CF-73AC-4E81-9711-32ABB145C3D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3A9C4CF-73AC-4E81-9711-32ABB145C3D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3A9C4CF-73AC-4E81-9711-32ABB145C3D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C8D0E2D-AF91-4C51-9F6E-5B84D075FA20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C8D0E2D-AF91-4C51-9F6E-5B84D075FA20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C8D0E2D-AF91-4C51-9F6E-5B84D075FA20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C8D0E2D-AF91-4C51-9F6E-5B84D075FA20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E42CD5EE-98F4-49BA-9A49-F0F85C9676AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E42CD5EE-98F4-49BA-9A49-F0F85C9676AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E42CD5EE-98F4-49BA-9A49-F0F85C9676AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E42CD5EE-98F4-49BA-9A49-F0F85C9676AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85F25B08-68BB-43BC-A009-46251298D5FC}.Debug|Any CPU.ActiveCfg = Debug
+		{85F25B08-68BB-43BC-A009-46251298D5FC}.Debug|Any CPU.Build.0 = Debug
+		{85F25B08-68BB-43BC-A009-46251298D5FC}.Release|Any CPU.ActiveCfg = Release
+		{85F25B08-68BB-43BC-A009-46251298D5FC}.Release|Any CPU.Build.0 = Release
+		{A448E225-DA7E-4BC6-8FB8-204FC18D951B}.Debug|Any CPU.ActiveCfg = Debug
+		{A448E225-DA7E-4BC6-8FB8-204FC18D951B}.Debug|Any CPU.Build.0 = Debug
+		{A448E225-DA7E-4BC6-8FB8-204FC18D951B}.Release|Any CPU.ActiveCfg = Release
+		{A448E225-DA7E-4BC6-8FB8-204FC18D951B}.Release|Any CPU.Build.0 = Release
+		{8C02F3B6-1EBD-419E-9B50-C066C6D8C441}.Debug|Any CPU.ActiveCfg = Debug
+		{8C02F3B6-1EBD-419E-9B50-C066C6D8C441}.Debug|Any CPU.Build.0 = Debug
+		{8C02F3B6-1EBD-419E-9B50-C066C6D8C441}.Release|Any CPU.ActiveCfg = Release
+		{8C02F3B6-1EBD-419E-9B50-C066C6D8C441}.Release|Any CPU.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2C8D0E2D-AF91-4C51-9F6E-5B84D075FA20} = {699EB881-40A6-4CA9-815C-319B8D0594D0}
+		{E42CD5EE-98F4-49BA-9A49-F0F85C9676AD} = {699EB881-40A6-4CA9-815C-319B8D0594D0}
+		{85F25B08-68BB-43BC-A009-46251298D5FC} = {D821F630-C8C1-4751-A156-1A1B3FD18EA3}
+		{A448E225-DA7E-4BC6-8FB8-204FC18D951B} = {D821F630-C8C1-4751-A156-1A1B3FD18EA3}
+		{8C02F3B6-1EBD-419E-9B50-C066C6D8C441} = {D821F630-C8C1-4751-A156-1A1B3FD18EA3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
+	EndGlobalSection
+EndGlobal

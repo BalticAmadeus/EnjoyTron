@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:56133/ClientService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Tron.WebService.TransportClasses" />
+  <xs:element name="InitLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Tron.WebService.TransportClasses" minOccurs="0" name="req" nillable="true" type="q1:InitLoginReq" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InitLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Tron.WebService.TransportClasses" minOccurs="0" name="InitLoginResult" nillable="true" type="q2:InitLoginResp" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CompleteLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Tron.WebService.TransportClasses" minOccurs="0" name="req" nillable="true" type="q3:CompleteLoginReq" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CompleteLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Tron.WebService.TransportClasses" minOccurs="0" name="CompleteLoginResult" nillable="true" type="q4:CompleteLoginResp" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreatePlayer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Tron.WebService.TransportClasses" minOccurs="0" name="req" nillable="true" type="q5:CreatePlayerReq" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreatePlayerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Tron.WebService.TransportClasses" minOccurs="0" name="CreatePlayerResult" nillable="true" type="q6:CreatePlayerResp" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WaitGameStart">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Tron.WebService.TransportClasses" minOccurs="0" name="req" nillable="true" type="q7:WaitGameStartReq" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WaitGameStartResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Tron.WebService.TransportClasses" minOccurs="0" name="WaitGameStartResult" nillable="true" type="q8:WaitGameStartResp" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LeaveGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Tron.WebService.TransportClasses" minOccurs="0" name="req" nillable="true" type="q9:LeaveGameReq" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LeaveGameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Tron.WebService.TransportClasses" minOccurs="0" name="LeaveGameResult" nillable="true" type="q10:LeaveGameResp" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
