@@ -14,8 +14,8 @@ The following third party libraries were used in the main solution:
 Microsoft CommonServiceLocator
 Microsoft Enterprise Library (Logging Application Block)
 Xceed Extended WPF Toolkit
-Microsoft Prism framework
-Microsoft Unity
+Prism
+Autofac
 
 The following third party libraries were used in the sample client:
 
