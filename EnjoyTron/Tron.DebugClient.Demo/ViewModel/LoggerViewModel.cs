@@ -1,4 +1,4 @@
-using Microsoft.Practices.Prism.Mvvm;
+using Prism.Mvvm;
 using Tron.DebugClient.Demo.Infrastructure;
 
 namespace Tron.DebugClient.Demo.ViewModel

@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using Microsoft.Practices.Prism.Logging;
-using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.UnityExtensions;
-using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.Unity;
+using Autofac;
+using Prism.Autofac;
+using Prism.Logging;
+using Prism.Regions;
 using Tron.DebugClient.Demo.Utilites;
 
 namespace Tron.DebugClient.Demo
 {
-    public class Bootstrapper : UnityBootstrapper
+    public class Bootstrapper : AutofacBootstrapper
     {
         protected override DependencyObject CreateShell()
         {
@@ -22,6 +21,14 @@ namespace Tron.DebugClient.Demo
 
             Application.Current.MainWindow = (Window)Shell;
             Application.Current.MainWindow.Show();
+
+            var regionManager = Container.Resolve<IRegionManager>();
+
+            regionManager.RegisterViewWithRegion("MainRegion", () => Container.ResolveNamed<object>("MainView"));
+            regionManager.RegisterViewWithRegion("AuthRegion", () => Container.ResolveNamed<object>("CommonDataView"));
+            regionManager.RegisterViewWithRegion("LoggerRegion", () => Container.ResolveNamed<object>("LoggerView"));
+
+            regionManager.RegisterViewWithRegion("ContentRegion", () => Container.ResolveNamed<object>("EmptyView"));
         }
 
         protected override ILoggerFacade CreateLogger()
@@ -33,17 +40,11 @@ namespace Tron.DebugClient.Demo
             });
         }
 
-        protected override void ConfigureServiceLocator()
+        protected override void ConfigureContainerBuilder(ContainerBuilder builder)
         {
-            ServiceLocator.SetLocatorProvider(() => Container.Resolve<IServiceLocator>());
-        }
+            base.ConfigureContainerBuilder(builder);
 
-        protected override void ConfigureModuleCatalog()
-        {
-            base.ConfigureModuleCatalog();
-
-            var mainModule = typeof(Module);
-            ModuleCatalog.AddModule(new ModuleInfo(mainModule.Name, mainModule.AssemblyQualifiedName) { InitializationMode = InitializationMode.WhenAvailable });
+            builder.RegisterModule<Module>();
         }
 
         public void Dispose()

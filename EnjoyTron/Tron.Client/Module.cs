@@ -1,44 +1,32 @@
-﻿using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.Regions;
-using Microsoft.Practices.Unity;
+﻿using Autofac;
 using Tron.AdminClient.Infrastructure;
 using Tron.AdminClient.ViewModels;
 using Tron.AdminClient.Views;
 
 namespace Tron.AdminClient
 {
-    public class Module: IModule
+    public class Module : Autofac.Module
     {
-        private readonly IUnityContainer _container;
-        private readonly IRegionManager _regionManager;
-
-        public Module(IUnityContainer container, IRegionManager regionManager)
+        protected override void Load(ContainerBuilder builder)
         {
-            _container = container;
-            _regionManager = regionManager;
-        }
+            base.Load(builder);
 
-        public void Initialize()
-        {
-            _container
-                .RegisterType<ISettingsManager, SettingsManager>(new ContainerControlledLifetimeManager())
-                .RegisterType<IFileDialogService, FileDialogService>()
-                .RegisterType<IConfirmationDialogService, ConfirmationDialogService>()
-                .RegisterType<IMapService, MapService>()
-                .RegisterType<IMessageBoxDialogService, MessageBoxDialogService>()
-                .RegisterType<IAdministrationServiceGateway, AdministrationServiceGateway>(new ContainerControlledLifetimeManager())
-            
-                .RegisterType<LoginViewModel>()
-                .RegisterType<LobbyViewModel>()
-                .RegisterType<OpenGameViewModel>()
-                .RegisterType<GamePreviewViewModel>()
+            builder.RegisterType<SettingsManager>().As<ISettingsManager>();
+            builder.RegisterType<FileDialogService>().As<IFileDialogService>().InstancePerDependency();
+            builder.RegisterType<ConfirmationDialogService>().As<IConfirmationDialogService>().InstancePerDependency();
+            builder.RegisterType<MapService>().As<IMapService>().InstancePerDependency();
+            builder.RegisterType<MessageBoxDialogService>().As<IMessageBoxDialogService>().InstancePerDependency();
+            builder.RegisterType<AdministrationServiceGateway>().As<IAdministrationServiceGateway>().InstancePerDependency();
 
-                .RegisterType<object, LoginView>("LoginView")
-                .RegisterType<object, LobbyView>("LobbyView")
-                .RegisterType<object, OpenGameView>("OpenGameView")
-                .RegisterType<object, GamePreviewView>("GamePreviewView");
+            builder.RegisterType<LoginViewModel>().AsSelf();
+            builder.RegisterType<LobbyViewModel>().AsSelf();
+            builder.RegisterType<OpenGameViewModel>().AsSelf();
+            builder.RegisterType<GamePreviewViewModel>().AsSelf();
 
-            _regionManager.RegisterViewWithRegion("MainRegion", () => _container.Resolve<LoginView>("LoginView"));
+            builder.RegisterType<LoginView>().Named<object>("LoginView");
+            builder.RegisterType<LobbyView>().Named<object>("LobbyView");
+            builder.RegisterType<OpenGameView>().Named<object>("OpenGameView");
+            builder.RegisterType<GamePreviewView>().Named<object>("GamePreviewView");
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Mvvm;
+using Prism.Regions;
 using Tron.AdminClient.Infrastructure;
 
 namespace Tron.AdminClient.ViewModels

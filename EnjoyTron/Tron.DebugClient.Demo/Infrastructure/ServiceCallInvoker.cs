@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using Microsoft.Practices.Prism.Logging;
+using Prism.Logging;
 using Tron.DebugClient.Demo.ClientService;
 
 namespace Tron.DebugClient.Demo.Infrastructure

@@ -2,7 +2,7 @@
 using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.Practices.Prism.Commands;
+using Prism.Commands;
 using Tron.DebugClient.Demo.ClientService;
 using Tron.DebugClient.Demo.Infrastructure;
 

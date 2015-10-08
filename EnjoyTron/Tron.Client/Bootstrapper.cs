@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Windows;
-using Microsoft.Practices.Prism.Logging;
-using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.UnityExtensions;
-using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.Unity;
+using Autofac;
+using Prism.Autofac;
+using Prism.Logging;
+using Prism.Modularity;
+using Prism.Regions;
 
 namespace Tron.AdminClient
 {
-    class Bootstrapper : UnityBootstrapper, IDisposable
+    class Bootstrapper : AutofacBootstrapper, IDisposable
     {
         protected override DependencyObject CreateShell()
         {
@@ -21,6 +21,10 @@ namespace Tron.AdminClient
 
             Application.Current.MainWindow = (Window)Shell;
             Application.Current.MainWindow.Show();
+
+            var regionManager = Container.Resolve<IRegionManager>();
+
+            regionManager.RegisterViewWithRegion("MainRegion", () => Container.ResolveNamed<object>("LoginView"));
         }
 
         protected override ILoggerFacade CreateLogger()
@@ -28,17 +32,11 @@ namespace Tron.AdminClient
             return new TextLogger();
         }
 
-        protected override void ConfigureServiceLocator()
+        protected override void ConfigureContainerBuilder(ContainerBuilder builder)
         {
-            ServiceLocator.SetLocatorProvider(() => Container.Resolve<IServiceLocator>());
-        }
+            base.ConfigureContainerBuilder(builder);
 
-        protected override void ConfigureModuleCatalog()
-        {
-            base.ConfigureModuleCatalog();
-
-            var mainModule = typeof(Module);
-            ModuleCatalog.AddModule(new ModuleInfo(mainModule.Name, mainModule.AssemblyQualifiedName) { InitializationMode = InitializationMode.WhenAvailable });
+            builder.RegisterModule<Module>();
         }
 
         public void Dispose()

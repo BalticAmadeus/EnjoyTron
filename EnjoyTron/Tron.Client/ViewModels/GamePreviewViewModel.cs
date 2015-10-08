@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.Practices.Prism.Regions;
+using Prism.Mvvm;
+using Prism.Regions;
 using Tron.AdminClient.Infrastructure;
 
 namespace Tron.AdminClient.ViewModels

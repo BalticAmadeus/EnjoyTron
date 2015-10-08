@@ -1,6 +1,4 @@
-﻿using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.Regions;
-using Microsoft.Practices.Unity;
+﻿using Autofac;
 using Tron.DebugClient.Infrastructure;
 using Tron.DebugClient.ViewModel;
 using Tron.DebugClient.ViewModel.Flows;
@@ -9,70 +7,56 @@ using Tron.DebugClient.Views.Flows;
 
 namespace Tron.DebugClient
 {
-    public class Module: IModule
-    {
-        private readonly IUnityContainer _container;
-        private readonly IRegionManager _regionManager;
-
-        public Module(IUnityContainer container, IRegionManager regionManager)
+    public class Module : Autofac.Module
+    { 
+        protected override void Load(ContainerBuilder builder)
         {
-            _container = container;
-            _regionManager = regionManager;
-        }
+            base.Load(builder);
 
-        public void Initialize()
-        {
-            _container.RegisterType<ISettingsManager, SettingsManager>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<IServiceCallInvoker, ServiceCallInvoker>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<ICommonDataManager, CommonDataManager>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<IMapService, MapService>(new ContainerControlledLifetimeManager());
-            _container.RegisterType<IMessageBoxDialogService, MessageBoxDialogService>(new TransientLifetimeManager());
+            builder.RegisterType<SettingsManager>().As<ISettingsManager>().SingleInstance();
+            builder.RegisterType<ServiceCallInvoker>().As<IServiceCallInvoker>().SingleInstance();
+            builder.RegisterType<CommonDataManager>().As<ICommonDataManager>().SingleInstance();
+            builder.RegisterType<MapService>().As<IMapService>().SingleInstance();
+            builder.RegisterType<MessageBoxDialogService>().As<IMessageBoxDialogService>().InstancePerDependency();
 
-            _container.RegisterType<LoggerViewModel>();
-            _container.RegisterType<CommonDataViewModel>();
+            builder.RegisterType<LoggerViewModel>().AsSelf().SingleInstance();
+            builder.RegisterType<CommonDataViewModel>().AsSelf().SingleInstance();
 
-            _container.RegisterType<CompleteLoginViewModel>(new TransientLifetimeManager());
-            _container.RegisterType<CreatePlayerViewModel>(new TransientLifetimeManager());
-            _container.RegisterType<GetPlayerViewViewModel>(new TransientLifetimeManager());
-            _container.RegisterType<GetTurnResultViewModel>(new TransientLifetimeManager());
-            _container.RegisterType<InitLoginViewModel>(new TransientLifetimeManager());
-            _container.RegisterType<LeaveGameViewModel>(new TransientLifetimeManager());
-            _container.RegisterType<PerformMoveViewModel>(new TransientLifetimeManager());
-            _container.RegisterType<WaitGameStartViewModel>(new TransientLifetimeManager());
-            _container.RegisterType<WaitNextTurnViewModel>(new TransientLifetimeManager());
+            builder.RegisterType<CompleteLoginViewModel>().AsSelf().SingleInstance();
+            builder.RegisterType<CreatePlayerViewModel>().AsSelf().SingleInstance();
+            builder.RegisterType<GetPlayerViewViewModel>().AsSelf().SingleInstance();
+            builder.RegisterType<GetTurnResultViewModel>().AsSelf().SingleInstance();
+            builder.RegisterType<InitLoginViewModel>().AsSelf().SingleInstance();
+            builder.RegisterType<LeaveGameViewModel>().AsSelf().SingleInstance();
+            builder.RegisterType<PerformMoveViewModel>().AsSelf().SingleInstance();
+            builder.RegisterType<WaitGameStartViewModel>().AsSelf().SingleInstance();
+            builder.RegisterType<WaitNextTurnViewModel>().AsSelf().SingleInstance();
 
-            _container.RegisterType<CompleteLoginFlowViewModel>(new TransientLifetimeManager());
-            _container.RegisterType<CreatePlayerFlowViewModel>(new TransientLifetimeManager());
-            _container.RegisterType<WaitGameStartFlowViewModel>(new TransientLifetimeManager());
-            _container.RegisterType<PlayerModeFlowViewModel>(new TransientLifetimeManager());
-            _container.RegisterType<WaitNextTurnLoopViewModel>(new TransientLifetimeManager());
+            builder.RegisterType<CompleteLoginFlowViewModel>().AsSelf().SingleInstance();
+            builder.RegisterType<CreatePlayerFlowViewModel>().AsSelf().SingleInstance();
+            builder.RegisterType<WaitGameStartFlowViewModel>().AsSelf().SingleInstance();
+            builder.RegisterType<PlayerModeFlowViewModel>().AsSelf().SingleInstance();
+            builder.RegisterType<WaitNextTurnLoopViewModel>().AsSelf().SingleInstance();
 
-            _container.RegisterType<object, MainView>("MainView");
-            _container.RegisterType<object, EmptyView>("EmptyView");
-            _container.RegisterType<object, CommonDataView>("CommonDataView");
-            _container.RegisterType<object, LoggerView>("LoggerView");
+            builder.RegisterType<MainView>().Named<object>("MainView").SingleInstance();
+            builder.RegisterType<EmptyView>().Named<object>("EmptyView").SingleInstance();
+            builder.RegisterType<CommonDataView>().Named<object>("CommonDataView").SingleInstance();
+            builder.RegisterType<LoggerView>().Named<object>("LoggerView").SingleInstance();
 
-            _container.RegisterType<object, CompleteLoginView>("CompleteLoginView", new TransientLifetimeManager());
-            _container.RegisterType<object, CreatePlayerView>("CreatePlayerView", new TransientLifetimeManager());
-            _container.RegisterType<object, GetPlayerViewView>("GetPlayerViewView", new TransientLifetimeManager());
-            _container.RegisterType<object, GetTurnResultView>("GetTurnResultView", new TransientLifetimeManager());
-            _container.RegisterType<object, InitLoginView>("InitLoginView", new TransientLifetimeManager());
-            _container.RegisterType<object, LeaveGameView>("LeaveGameView", new TransientLifetimeManager());
-            _container.RegisterType<object, PerformMoveView>("PerformMoveView", new TransientLifetimeManager());
-            _container.RegisterType<object, WaitGameStartView>("WaitGameStartView", new TransientLifetimeManager());
-            _container.RegisterType<object, WaitNextTurnView>("WaitNextTurnView", new TransientLifetimeManager());
+            builder.RegisterType<CompleteLoginView>().Named<object>("CompleteLoginView").SingleInstance();
+            builder.RegisterType<CreatePlayerView>().Named<object>("CreatePlayerView").SingleInstance();
+            builder.RegisterType<GetPlayerViewView>().Named<object>("GetPlayerViewView").SingleInstance();
+            builder.RegisterType<GetTurnResultView>().Named<object>("GetTurnResultView").SingleInstance();
+            builder.RegisterType<InitLoginView>().Named<object>("InitLoginView").SingleInstance();
+            builder.RegisterType<LeaveGameView>().Named<object>("LeaveGameView").SingleInstance();
+            builder.RegisterType<PerformMoveView>().Named<object>("PerformMoveView").SingleInstance();
+            builder.RegisterType<WaitGameStartView>().Named<object>("WaitGameStartView").SingleInstance();
+            builder.RegisterType<WaitNextTurnView>().Named<object>("WaitNextTurnView").SingleInstance();
 
-            _container.RegisterType<object, CompleteLoginFlowView>("CompleteLoginFlowView", new TransientLifetimeManager());
-            _container.RegisterType<object, CreatePlayerFlowView>("CreatePlayerFlowView", new TransientLifetimeManager());
-            _container.RegisterType<object, WaitGameStartFlowView>("WaitGameStartFlowView", new TransientLifetimeManager());
-            _container.RegisterType<object, PlayerModeFlowView>("PlayerModeFlowView", new TransientLifetimeManager());
-            _container.RegisterType<object, WaitNextTurnLoopView>("WaitNextTurnLoopView", new TransientLifetimeManager());
-
-            _regionManager.RegisterViewWithRegion("MainRegion", () => _container.Resolve<MainView>("MainView"));
-            _regionManager.RegisterViewWithRegion("AuthRegion", () => _container.Resolve<CommonDataView>("CommonDataView"));
-            _regionManager.RegisterViewWithRegion("LoggerRegion", () => _container.Resolve<LoggerView>("LoggerView"));
-
-            _regionManager.RegisterViewWithRegion("ContentRegion", () => _container.Resolve<EmptyView>("EmptyView"));
+            builder.RegisterType<CompleteLoginFlowView>().Named<object>("CompleteLoginFlowView").SingleInstance();
+            builder.RegisterType<CreatePlayerFlowView>().Named<object>("CreatePlayerFlowView").SingleInstance();
+            builder.RegisterType<WaitGameStartFlowView>().Named<object>("WaitGameStartFlowView").SingleInstance();
+            builder.RegisterType<PlayerModeFlowView>().Named<object>("PlayerModeFlowView").SingleInstance();
         }
     }
 }

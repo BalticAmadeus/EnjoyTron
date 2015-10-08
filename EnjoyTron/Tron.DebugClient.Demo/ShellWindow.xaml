@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Tron.DebugClient.Demo.ShellWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:regions="http://www.codeplex.com/CompositeWPF"
+        xmlns:regions="http://prismlibrary.com/"
         Title="EnjoyTron Debug Client" Height="900" Width="1280" MinWidth="1280" MinHeight="900">
     <Grid>
         <ContentControl regions:RegionManager.RegionName="MainRegion" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10"/>

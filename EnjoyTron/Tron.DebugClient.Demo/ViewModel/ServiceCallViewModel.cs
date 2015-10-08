@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using Microsoft.Practices.Prism.Mvvm;
+using Prism.Mvvm;
 using Tron.DebugClient.Demo.Infrastructure;
 using Tron.DebugClient.Demo.Utilites;
 

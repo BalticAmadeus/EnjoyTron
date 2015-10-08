@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using Microsoft.Practices.Prism.Mvvm;
+using Prism.Mvvm;
 
 namespace Tron.AdminClient.ViewModels
 {

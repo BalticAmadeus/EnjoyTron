@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Practices.Prism.Logging;
+using Prism.Logging;
 
 namespace Tron.DebugClient.Utilites
 {
