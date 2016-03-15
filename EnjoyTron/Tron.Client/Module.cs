@@ -16,7 +16,7 @@ namespace Tron.AdminClient
             builder.RegisterType<ConfirmationDialogService>().As<IConfirmationDialogService>().InstancePerDependency();
             builder.RegisterType<MapService>().As<IMapService>().InstancePerDependency();
             builder.RegisterType<MessageBoxDialogService>().As<IMessageBoxDialogService>().InstancePerDependency();
-            builder.RegisterType<AdministrationServiceGateway>().As<IAdministrationServiceGateway>().InstancePerDependency();
+            builder.RegisterType<AdministrationServiceGateway>().As<IAdministrationServiceGateway>().SingleInstance();
 
             builder.RegisterType<LoginViewModel>().AsSelf();
             builder.RegisterType<LobbyViewModel>().AsSelf();
